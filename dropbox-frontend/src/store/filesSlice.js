@@ -2,13 +2,16 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
 export const fetchFiles = createAsyncThunk("files/fetchFiles", async () => {
-  const response = await axios.get("/api/files");
+  const response = await axios.get("http://localhost:8080/api/files");
   return response.data;
 });
 export const uploadFile = createAsyncThunk("files/uploadFile", async (file) => {
   const formData = new FormData();
   formData.append("file", file);
-  const response = await axios.post("/api/files/upload", formData);
+  const response = await axios.post(
+    "http://localhost:8080/api/files/upload",
+    formData
+  );
   return response.data;
 });
 
